@@ -23,8 +23,26 @@ const registerUser = async (req, res) => {
     }
 }
 
-const loginUser = (req, res) => {
-    res.send('login')
+const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        let user = await findUser(email); // find in sqlite
+
+        if (!user) return res.status(400).json({ error: 'User doesnt exists' }) 
+
+        const isValidPassword = await bcrypt.compare(password, user.password);
+
+        if (!isValidPassword) {
+            return res.status(400).json("Invalid email or password");
+        }
+
+        const token = createToken(user.id);
+
+        res.status(200).json({ id: user.id, email, token });
+    } catch (e) {
+
+    }
 }
 
 module.exports = { registerUser, loginUser }
