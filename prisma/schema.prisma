@@ -16,3 +16,9 @@ model Users {
   email          String
   password       String
 }
+
+model Chat {
+  id             String           @id @unique @default(uuid())
+  firstMember    String
+  secondMember   String
+}
