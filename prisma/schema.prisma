@@ -12,13 +12,21 @@ datasource db {
 }
 
 model Users {
-  id             String           @id @unique @default(uuid())
+  id             Int    @id @default(autoincrement())
   email          String
   password       String
 }
 
 model Chat {
-  id             String           @id @unique @default(uuid())
-  firstMember    String
-  secondMember   String
+  id             Int    @id @default(autoincrement())
+  firstMember    Int
+  secondMember   Int
+}
+
+model Message {
+  id             Int    @id @default(autoincrement())
+  chatId         Int 
+  senderId       Int
+  text           String @db.Text
+  createdAt  DateTime  @default(now())
 }

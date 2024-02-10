@@ -33,7 +33,7 @@ const findUserChats = async (req, res) => {
     }
 }
 
-const findChat = async (req, res) => {
+const findSingleChat = async (req, res) => {
     const { firstId, secondId } = req.params;
     try {
         const chat = await findChat(firstId, secondId);
@@ -45,4 +45,4 @@ const findChat = async (req, res) => {
     }
 }
 
-module.exports = { createUserChat, findUserChats, findChat }
+module.exports = { createUserChat, findUserChats, findSingleChat }
