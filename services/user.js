@@ -15,4 +15,6 @@ const findUserById = (id) => db.users.findFirst({
     where: { id }
 });
 
-module.exports = { createUser, findUser, findUserById };
+const findAllUsers = () => db.users.findMany();
+
+module.exports = { createUser, findUser, findUserById, findAllUsers };
