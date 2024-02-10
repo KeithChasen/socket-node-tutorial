@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { findUser, createUser } = require('../services/user');
+const { findUser, createUser, findUserById } = require('../services/user');
 const { createToken } = require('../utils/auth');
 
 const registerUser = async (req, res) => {
@@ -45,4 +45,16 @@ const loginUser = async (req, res) => {
     }
 }
 
-module.exports = { registerUser, loginUser }
+const findUserRoute = async (req, res) => {
+    try {
+        const userId = req.params.userId
+
+        const user = await findUserById(userId);
+
+        res.status(200).json(user);
+    } catch(e) {
+
+    }
+}
+
+module.exports = { registerUser, loginUser, findUserRoute }

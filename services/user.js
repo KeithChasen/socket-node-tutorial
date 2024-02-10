@@ -11,4 +11,8 @@ const findUser = (email) => db.users.findFirst({
     where: { email }
 });
 
-module.exports = { createUser, findUser };
+const findUserById = (id) => db.users.findFirst({
+    where: { id }
+});
+
+module.exports = { createUser, findUser, findUserById };
