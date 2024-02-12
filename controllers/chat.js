@@ -1,9 +1,7 @@
-const { findChat, createChat } = require("../services/chat");
+const { findChat, createChat, findChatByUserId } = require("../services/chat");
 
 const createUserChat = async (req, res) => {
     const { firstId, secondId } = req.body;
-
-    console.log({ firstId, secondId })
 
     try {
         const chat = await findChat(firstId, secondId);
