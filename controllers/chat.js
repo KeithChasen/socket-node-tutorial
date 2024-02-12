@@ -3,10 +3,12 @@ const { findChat, createChat } = require("../services/chat");
 const createUserChat = async (req, res) => {
     const { firstId, secondId } = req.body;
 
+    console.log({ firstId, secondId })
+
     try {
         const chat = await findChat(firstId, secondId);
 
-        if (chat) {
+        if (chat.length) {
             return res.status(200).json(chat);
         }
 

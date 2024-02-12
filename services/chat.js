@@ -9,8 +9,10 @@ const findChat = (firstId, secondId) => db.$queryRaw`
 `;
 
 const createChat = (firstId, secondId) => db.chat.create({
-    firstMember: firstId,
-    secondMember: secondId
+    data: {
+        firstMember: firstId,
+        secondMember: secondId
+    } 
 });
 
 const findChatByUserId = id => db.$queryRaw`
