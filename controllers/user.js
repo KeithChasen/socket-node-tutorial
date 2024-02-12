@@ -49,7 +49,7 @@ const findUserRoute = async (req, res) => {
     try {
         const userId = req.params.userId
 
-        const user = await findUserById(userId);
+        const user = await findUserById(parseInt(userId));
 
         res.status(200).json(user);
     } catch(e) {
