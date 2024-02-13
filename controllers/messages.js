@@ -4,7 +4,12 @@ const createMessage = async (req, res) => {
     const { chatId, senderId, text } = req.body;
 
     try {
-        const response = createNewMessage(chatId, senderId, text);
+        const response = await createNewMessage(
+            parseInt(chatId), 
+            parseInt(senderId), 
+            text
+        );
+
         res.status(200).json(response);
     } catch(e) {
         console.log(e);

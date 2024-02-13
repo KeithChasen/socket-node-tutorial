@@ -2,9 +2,11 @@ const { db } = require("../utils/db");
 
 const createNewMessage = (chatId, senderId, text) => 
     db.message.create({
-        chatId, 
-        senderId, 
-        text
+        data: {
+            chatId, 
+            senderId, 
+            text
+        }
     })
 
 const getChatMessages = chatId => 
