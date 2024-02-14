@@ -27,8 +27,26 @@ app.get('/', (req, res) => {
     res.send('Welcome to the socket API');
 });
 
+let onlineUsers = [];
+
 io.on('connection', socket => {
   console.log('socket connected', socket.id);
+
+  socket.on('addNewUser', userId => {
+    console.log('addNewUser emitted', userId)
+
+    !onlineUsers.some(user => user.userId === userId) &&
+    
+    onlineUsers.push({
+      userId,
+      socketId: socket.id
+    });
+
+    console.log(onlineUsers, 'onlineUsers');
+
+    io.emit('getOnlineUsers', onlineUsers);
+
+  })
 });
 
 server.listen(1200, () => {
