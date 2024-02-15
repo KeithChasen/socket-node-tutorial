@@ -30,11 +30,7 @@ app.get('/', (req, res) => {
 let onlineUsers = [];
 
 io.on('connection', socket => {
-  console.log('socket connected', socket.id);
-
   socket.on('addNewUser', userId => {
-    console.log('addNewUser emitted', userId)
-
     !onlineUsers.some(user => user.userId === userId) &&
     
     onlineUsers.push({
@@ -42,10 +38,15 @@ io.on('connection', socket => {
       socketId: socket.id
     });
 
-    console.log(onlineUsers, 'onlineUsers');
-
     io.emit('getOnlineUsers', onlineUsers);
+  });
 
+  socket.on('sendMessage', (message) => {
+    const user = onlineUsers.find(u => u.userId === message.recipientId);
+
+    if (user) {
+      io.to(user.socketId).emit('getMessage', message);
+    }
   });
 
   socket.on('disconnect', () => {
