@@ -7,8 +7,8 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  // url      = env("DATABASE_URL")
-  url = "mysql://root:password@localhost:3306/chat"
+  url      = env("DATABASE_URL")
+  // url = "mysql://root:password@localhost:3306/chat"
 }
 
 model Users {

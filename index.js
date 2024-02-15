@@ -7,6 +7,8 @@ const messagesRoutes = require('./routes/messages');
 const { Server } = require('socket.io');
 const { createServer } = require('node:http');
 
+require("dotenv").config();
+
 const app = express();
 const server = createServer(app);
 
