@@ -58,6 +58,8 @@ io.on('connection', socket => {
   })
 });
 
-server.listen(1200, () => {
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
   console.log('server running at http://localhost:1200');
 });
